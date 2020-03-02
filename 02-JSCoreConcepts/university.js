@@ -2,23 +2,34 @@ names = ['Piotr', 'Anna', 'Michał', 'Paulina', 'Mateusz', 'Magda'];
 
 class Students {
     constructor(names) {
-        // ...
+        this.names=names;
     }
 
     startWith(letter){
-        return // names (array) which starts with the letter
+        let tab = [];
+        for (let item of this.names){
+            if (item.charAt(0)==letter){
+                tab.push(item);
+            }
+        }
+        return tab;// names (array) which starts with the letter
     }
 
     sort() {
-        return // names (array) in alphabetical order 
+        return this.names.sort(); // names (array) in alphabetical order 
     }
 
     get() {
-        return // names (array) in natural order
+        return this.names;// names (array) in natural order
     }
 
     getFirst(n) {
-        return // get first 'n' names (array) 
+        let tab = [];
+        for(let i = 0; i<n; i++){
+            tab.push(this.names[i]);
+        }
+        
+        return tab; // get first 'n' names (array) 
     }
 }
 
