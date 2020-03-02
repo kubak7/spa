@@ -13,3 +13,11 @@ ul. Długa 15
 30-781 Kraków
 POLAND
 */
+
+console.log(title+" "+name+" "+surname);
+console.log("ul."+street);
+console.log(zip+" "+city);
+console.log(country.toUpperCase());
+console.log();
+
+console.log(`${title} ${name} ${surname}\nul.${street}\n${zip} ${city}\n${country}`);
