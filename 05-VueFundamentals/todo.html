@@ -4,6 +4,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+    <div id="app">
+        <ul>
+            <li>Do wykonania...</li>
+            <li v-for="(item, index) in this.todo.sort()">{{ index }}. {{ item }}</li>
+        </ul>
+    </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -12,7 +18,12 @@
           'Purchase two tickets to cinema',
           'Feed cat',
           'Pay cable bill',
-          'Go shopping'
+          'Go shopping',
+      ]},
+      computed: {
+          orderedUsers () {
+              return this.todo.orderBy(this.todo.items, 'item');
+          }
       }
     });
   </script>

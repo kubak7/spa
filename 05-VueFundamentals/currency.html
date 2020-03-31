@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Currency</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-$END$
+<div class="container mt-4" id="app">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Currency</th>
+            <th scope="col">Code</th>
+            <th scope="col">Mid</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in currencies.rates">
+            <td>{{ item.currency }}</td>
+            <td>{{ item.code }}</td>
+            <td>{{ item.mid }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            currencies: []
+        },
+        mounted: function() {
+            axios.get('http://api.nbp.pl/api/exchangerates/tables/a?format=json')
+                .then(response => {
+                    this.currencies = response.data[0];
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    })
+
+
+
+
+</script>
+
 </body>
-</html>

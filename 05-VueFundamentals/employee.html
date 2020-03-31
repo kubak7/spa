@@ -4,9 +4,36 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+    <div id="app">
+        <p>Employee record</p>
+        <p>Name 1: {{ this.name1 }}</p>
+        <p v-if="secondNameExists">Name 2: {{ name2 }}</p>
+        <p>Surname: {{ surname }}</p>
+        <p v-if= "nationality == 'Polish' "> {{ pesel }} </p>
+        <p v-else> {{ nationality }}</p>
+
+    </div>
   <script>
     var app = new Vue({
       el: '#app',
+      methods: {
+          secondNameExists() {
+            if(this.name2 == null){
+                return false;
+            }
+            else{
+                return true;
+            }
+          },
+          isPolish() {
+              if (this.nationality != ""){
+                  return true;
+              }
+              else{
+                  return false;
+              }
+          }
+      },
       data: {
         name1: 'Adam',
         name2: 'Jan',
@@ -15,7 +42,12 @@
         nationality: 'Polish',
         pesel: '92021708229',
         address: 'ul. Szeroka 3, Kraków',
+        }
     });
+
+    document.getElementsByClassName("p")[0].style.fontWeight = "bold";
+
+
   </script>
 
 </body>
