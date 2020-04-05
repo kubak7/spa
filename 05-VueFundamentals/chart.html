@@ -2,8 +2,13 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
+    <div id="app">
+        <canvas id="languages-chart" width="400" height="400"></canvas>
+    </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -30,8 +35,46 @@
             popularity: 7.37
           }
         ] 
-      }
+      },
+        computed: {
+          returnLanguages() {
+              var tabLang = [];
+              for (let i = 0; i<this.films.length; i++){
+                  tabLang.push(this.films[i].language);
+              }
+              return tabLang;
+          },
+          returnPopularity() {
+              var tabPop = [];
+              for (let i = 0; i<this.films.length; i++){
+                  tabPop.push(this.films[i].popularity);
+              }
+              return tabPop;
+          }
+        }
     });
+
+    new Chart(document.getElementById("languages-chart"), {
+        type: 'bar',
+        data: {
+            labels: app.returnLanguages,
+            datasets: [
+                {
+                    label: "Popularity",
+                    backgroundColor: ["#fff700", "#2c89e6","#558fc9","#c98e1e","#571ec9"],
+                    data: app.returnPopularity
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Popularity of each programming language'
+            }
+        }
+    });
+
   </script>
 </body>
 </html>

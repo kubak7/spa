@@ -4,9 +4,17 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+    <div v-bind:style="{ fontSize: fontSize }" id="app">
+        <p> {{ company.toUpperCase() }}</p>
+        <p> {{ address }}</p>
+        <p> {{ postcode }} {{ city }}</p>
+        <p> tel. {{ landline }}, {{ mobile }}</p>
+        <a v-bind:href="web"> {{ web }}</a>
+    </div>
   <script>
     var app = new Vue({
       el: '#app',
+      fontSize: '13px',
       data: {
         company: 'UnikPol S.A.',
         address: 'ul. Ukryta 5',
@@ -17,6 +25,9 @@
         web: 'http://www.unikpol.pl'
       }
     });
+
+    document.getElementById("app").style.border = "1px solid black";
+    document.getElementById("app").style.textAlign = "center";
   </script>
 
 </body>
